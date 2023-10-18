@@ -6,8 +6,8 @@ from PIL import Image
 from matplotlib import pyplot as plt
 
 from datasets.transforms import build_transform
-from test.datasets import build_dataset_ccrop
-from test.datasets.transforms import cifar_train_ccrop
+from ccorp.datasets import build_dataset_ccrop
+from ccorp.datasets.transforms import cifar_train_ccrop
 
 if __name__ == '__main__':
     mean = (0.5071, 0.4867, 0.4408)

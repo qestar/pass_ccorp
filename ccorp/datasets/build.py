@@ -1,8 +1,8 @@
 
 import torchvision
 
-from test import datasets
-from test.datasets.transforms import build_transform
+from ccorp import datasets
+from ccorp.datasets.transforms import build_transform
 
 
 def build_dataset(cfg):

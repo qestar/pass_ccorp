@@ -226,7 +226,7 @@ def main():
 
 
 
-    ###################################### test stage ###########################################
+    ###################################### ccorp stage ###########################################
     test_transform = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),

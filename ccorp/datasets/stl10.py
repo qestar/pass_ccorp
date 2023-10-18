@@ -7,7 +7,7 @@ import numpy as np
 
 class STL10_boxes(datasets.STL10):
     def __init__(self, split, root, transform_rcrop, transform_ccrop, init_box=(0., 0., 1., 1.), **kwargs):
-        assert split in ['train', 'test', 'unlabeled', 'train+unlabeled']
+        assert split in ['train', 'ccorp', 'unlabeled', 'train+unlabeled']
         super().__init__(split=split, root=root, **kwargs)
         self.transform_rcrop = transform_rcrop
         self.transform_ccrop = transform_ccrop

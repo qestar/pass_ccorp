@@ -1,4 +1,4 @@
-from test.datasets import transforms
+from ccorp.datasets import transforms
 
 
 def build_transform(cfg):

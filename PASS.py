@@ -12,7 +12,7 @@ import sys
 import numpy as np
 from myNetwork import network
 from iCIFAR100 import iCIFAR100
-from test.datasets.transforms import cifar_train_ccrop
+from ccorp.datasets.transforms import cifar_train_ccrop
 
 
 class protoAugSSL:
@@ -109,6 +109,29 @@ class protoAugSSL:
         return img
 
     def train(self, current_task, old_class=0):
+        # opt = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate, weight_decay=2e-4)
+        # scheduler = StepLR(opt, step_size=45, gamma=0.1)
+        # accuracy = 0
+        # for epoch in range(self.epochs):
+        #     scheduler.step()
+        #     for step, (indexs, images, target) in enumerate(self.train_loader):
+        #         images, target = images.to(self.device), target.to(self.device)
+        #
+        #         # self-supervised learning based label augmentation
+        #         images = torch.stack([torch.rot90(images, k, (2, 3)) for k in range(4)], 1)
+        #         images = images.view(-1, 3, 32, 32)
+        #         target = torch.stack([target * 4 + k for k in range(4)], 1).view(-1)
+        #
+        #         opt.zero_grad()
+        #         loss = self._compute_loss(images, target, old_class)
+        #         opt.zero_grad()
+        #         loss.backward()
+        #         opt.step()
+        #     if epoch % self.args.print_freq == 0:
+        #         accuracy = self._test(self.test_loader)
+        #         print('epoch:%d, accuracy:%.5f' % (epoch, accuracy))
+        # self.protoSave(self.model, self.train_loader, current_task)
+
         opt = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate, weight_decay=2e-4)
         scheduler = StepLR(opt, step_size=45, gamma=0.1)
         accuracy = 0
@@ -126,12 +149,12 @@ class protoAugSSL:
                 # self-supervised learning based label augmentation
                 tmp = []
                 for i in range(0, len(images)):
+                    tmp.append(images[i].cpu())
                     img = self.transform_invert(images[i])
                     ccorp_imgs = transform([img, box])
                     tmp.append(ccorp_imgs[0])
                     tmp.append(ccorp_imgs[1])
-                    tmp.append(ccorp_imgs[2])
-                res = torch.stack([i for i in tmp], 1)
+                res = torch.stack([i for i in tmp], 0)
                 res = res.view(-1, 3, 32, 32)
                 res = res.to(self.device)
 

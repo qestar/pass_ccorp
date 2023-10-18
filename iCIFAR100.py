@@ -38,8 +38,8 @@ class iCIFAR100(CIFAR100):
         datas, labels = self.concatenate(datas, labels)
         self.TestData = datas if self.TestData == [] else np.concatenate((self.TestData, datas), axis=0)
         self.TestLabels = labels if self.TestLabels == [] else np.concatenate((self.TestLabels, labels), axis=0)
-        print("the size of test set is %s" % (str(self.TestData.shape)))
-        print("the size of test label is %s" % str(self.TestLabels.shape))
+        print("the size of ccorp set is %s" % (str(self.TestData.shape)))
+        print("the size of ccorp label is %s" % str(self.TestLabels.shape))
 
     def getTestData_up2now(self, classes):
         datas, labels = [], []
@@ -50,8 +50,8 @@ class iCIFAR100(CIFAR100):
         datas, labels = self.concatenate(datas, labels)
         self.TestData = datas
         self.TestLabels = labels
-        print("the size of test set is %s" % (str(datas.shape)))
-        print("the size of test label is %s" % str(labels.shape))
+        print("the size of ccorp set is %s" % (str(datas.shape)))
+        print("the size of ccorp label is %s" % str(labels.shape))
 
     def getTrainData(self, classes):
         datas, labels = [], []

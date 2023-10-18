@@ -32,7 +32,7 @@ def cifar_train_ccrop(alpha=0.6, mean=None, std=None):
     ]
 
     transform = CCompose(trans_list)
-    transform = MultiViewTransform(transform, num_views=3)
+    transform = MultiViewTransform(transform, num_views=2)
     return transform
 
 
