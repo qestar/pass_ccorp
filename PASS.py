@@ -158,8 +158,8 @@ class protoAugSSL:
                 res = res.view(-1, 3, 32, 32)
                 res = res.to(self.device)
 
-
                 # target = torch.stack([target * 3 + k for k in range(3)], 1).view(-1)
+                target = torch.stack([target * 3], 1).view(-1)
 
                 opt.zero_grad()
                 loss = self._compute_loss(res, target, old_class)
