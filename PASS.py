@@ -177,7 +177,7 @@ class protoAugSSL:
             imgs, labels = imgs.to(self.device), labels.to(self.device)
             with torch.no_grad():
                 outputs = self.model(imgs)
-            outputs = outputs[:, ::3]  # only compute predictions on original class nodes
+            outputs = outputs[:, ::4]  # only compute predictions on original class nodes
             predicts = torch.max(outputs, dim=1)[1]
             correct += (predicts.cpu() == labels.cpu()).sum()
             total += len(labels)
